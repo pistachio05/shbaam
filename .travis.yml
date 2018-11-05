@@ -1,17 +1,3 @@
-#*******************************************************************************
-#.travis.yml
-#*******************************************************************************
-
-#Purpose:
-#Travis CI is a hosted continuous integration service, that is, it allows 
-#running code directly from a repository and checking that the code acts as 
-#expected. The purpose of the .travis.yml file is to give instructions to Travis 
-#CI on how to do the work.
-#Author:
-#Cedric H. David, 2017-2018
-
-
-#*******************************************************************************
 #System specifications for Travis CI
 #*******************************************************************************
 matrix:
@@ -87,8 +73,3 @@ script:
 - cd ./tst/
 - echo $TST_PUB_DWNL && $TST_PUB_DWNL
 - echo $TST_PUB_REPR && $TST_PUB_REPR
-
-
-#*******************************************************************************
-#End
-#*******************************************************************************
