@@ -26,8 +26,9 @@ git
 wget
 zip
 unzip
+python3.6
 python-pip
-python-dev
+
 
 #-------------------------------------------------------------------------------
 #Needed for Travis CI
