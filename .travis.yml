@@ -17,9 +17,7 @@
 matrix:
   include:
     - os: linux
-      language: python
-        python:
-         - "3.6"
+      language: generic
       sudo: required
     - os: osx
       language: generic
@@ -47,11 +45,6 @@ before_install:
 #-------------------------------------------------------------------------------
 #Specific to Linux
 #-------------------------------------------------------------------------------
-
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update      ; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; sudo apt-get install python3  ; fi
-#------------------- above suppose to include python 3 env delete if not working 
-
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get --version             ; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt) ; fi
 
@@ -94,8 +87,3 @@ script:
 - cd ./tst/
 - echo $TST_PUB_DWNL && $TST_PUB_DWNL
 - echo $TST_PUB_REPR && $TST_PUB_REPR
-
-
-#*******************************************************************************
-#End
-#*******************************************************************************
