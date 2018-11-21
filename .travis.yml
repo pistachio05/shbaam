@@ -17,7 +17,9 @@
 matrix:
   include:
     - os: linux
-      language: generic
+      language: python
+      python:
+      - "3.6"
       sudo: required
 
 
