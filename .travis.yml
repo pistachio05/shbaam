@@ -1,26 +1,12 @@
-#*******************************************************************************
-#.travis.yml
-#*******************************************************************************
-
-#Purpose:
-#Travis CI is a hosted continuous integration service, that is, it allows 
-#running code directly from a repository and checking that the code acts as 
-#expected. The purpose of the .travis.yml file is to give instructions to Travis 
-#CI on how to do the work.
-#Author:
-#Cedric H. David, 2017-2018
-
-
-#*******************************************************************************
-#System specifications for Travis CI
-#*******************************************************************************
 matrix:
   include:
     - os: linux
-      language: python
-      python:
-      - "2.7"
+      language: generic
       sudo: required
+    - os: osx
+      language: generic
+  allow_failures:
+    - os: osx
 
 
 #*******************************************************************************
@@ -38,7 +24,7 @@ before_install:
 #-------------------------------------------------------------------------------
 #Create .netrc file for secure downloads (users need their own credentials)
 #-------------------------------------------------------------------------------
-- echo "machine urs.earthdata.nasa.gov login malaya@uci.edu password Aircarnot1!" >> ~/.netrc
+- echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc
 
 #-------------------------------------------------------------------------------
 #Specific to Linux
@@ -50,7 +36,11 @@ before_install:
 #-------------------------------------------------------------------------------
 #Specific to OSX
 #-------------------------------------------------------------------------------
-
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew --version                  ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm /usr/local/include/c++ ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew reinstall $(grep -v -E '(^#|^$)' requirements.brw) ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ln -s /usr/local/bin/python2 /usr/local/bin/python ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ln -s /usr/local/bin/pip2 /usr/local/bin/pip ; fi
 
 #-------------------------------------------------------------------------------
 #General environment details
@@ -80,4 +70,4 @@ install:
 script:
 - cd ./tst/
 - echo $TST_PUB_DWNL && $TST_PUB_DWNL
-- echo $TST_PUB_REPR && $TST_PUB_REPR 
+- echo $TST_PUB_REPR && $TST_PUB_REPR
