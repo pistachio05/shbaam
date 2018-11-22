@@ -1,9 +1,9 @@
 matrix:
   include:
     - os: linux
-      language: python
+      language: generic
       python:
-      - "2.6"
+      - "3.6"
       sudo: required
     - os: osx
       language: generic
