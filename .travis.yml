@@ -3,7 +3,7 @@ matrix:
     - os: linux
       language: python
       python:
-      - "3.6"
+      - "2.6"
       sudo: required
     - os: osx
       language: generic
